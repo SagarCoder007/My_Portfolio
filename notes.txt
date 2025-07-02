@@ -1,0 +1,68 @@
+
+1. **Use Stack & Tech**:
+   Build the website using **HTML, CSS, and JavaScript**, and enhance it with **GSAP** for animations and **Three.js** for 3D interactive background effects.
+
+2. **Theme & Design**:
+   Apply a **modern, dark theme** using deep tones like `#0f0f0f` and `#1a1a1a`, paired with **neon or gradient accents**. Ensure a **responsive layout** with smooth transitions and a clean, grid-based structure.
+
+3. **Hero Section**:
+
+   * Fullscreen **Three.js background** (e.g., floating particles, starfield, or low-poly shapes).
+   * Developer’s **name**, role (“Full-Stack Web Developer”), and a **GSAP-animated tagline**.
+   * Add **call-to-action buttons** like “View Projects” and “Contact Me”.
+   * Include **animated social media icons** (LinkedIn, GitHub, etc.).
+
+4. **About Me Section**:
+
+   * Display a short **personal bio**, optional profile photo, and brief career overview.
+   * Highlight **experience, tech stack, and goals**.
+   * Animate content using **GSAP scroll-triggered fades or slides**.
+
+5. **Skills Section**:
+
+   * Categorize into **Frontend, Backend, Tools, and DevOps**.
+   * Use **animated icons, circular progress meters, or bars**.
+   * Animate on scroll or hover using GSAP.
+
+6. **Projects Section**:
+
+   * Showcase **4–6 major projects** using stylish project cards.
+   * Each card includes a **thumbnail, title, tech stack, short description, and links** to GitHub/live demo.
+   * Add **hover effects**, GSAP slide-ins, and optional lightbox previews.
+
+7. **Contact Section**:
+
+   * Include a **contact form** with fields: name, email, and message.
+   * Form should have **validation** and optional integration with **EmailJS or backend API**.
+   * Add alternative info: **email, phone, location**, and use GSAP to animate inputs/focus states.
+
+8. **Navigation Bar**:
+
+   * Implement a **sticky top navbar** with smooth scrolling to sections.
+   * On mobile, use a **hamburger menu with GSAP slide-in** drawer.
+
+9. **Animated Background**:
+
+   * Use **Three.js** to add subtle animated effects like **waves, dots, or floating shapes**.
+   * Ensure it's lightweight and has an **animation toggle** for performance-conscious users.
+
+10. **Styling & Fonts**:
+
+* Apply **modern fonts** (e.g., JetBrains Mono, Fira Code, Inter).
+* Use effects like **glassmorphism, glows, and gradients** for a sleek, developer-friendly vibe.
+
+11. **Optional Sections**:
+
+* Add a **Blog** for articles/tutorials.
+* Include a **Testimonials** section for freelance/social proof.
+* Provide a **Download CV** button with icon and animation.
+
+12. **Extra Visual Enhancements**:
+
+* Add **mouse parallax** effects for interactivity.
+* Provide a **dark/light mode toggle** (optional).
+
+13. **Final Notes**:
+
+* Focus on **performance, accessibility, and responsiveness**.
+* Structure clean, maintainable code to leave a lasting impression on **recruiters and clients**.
