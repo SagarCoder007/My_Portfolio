@@ -250,19 +250,30 @@ class Portfolio {
     submitBtn.disabled = true;
 
     try {
-      // Simulate form submission (replace with actual endpoint)
-      await this.simulateFormSubmission(new FormData(form));
-      
-      // Show success message
-      successMsg.classList.add('show');
-      form.reset();
-      
-      // Hide success message after 5 seconds
-      setTimeout(() => {
-        successMsg.classList.remove('show');
-      }, 5000);
+      // Submit to Formspree
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        // Show success message
+        successMsg.classList.add('show');
+        form.reset();
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          successMsg.classList.remove('show');
+        }, 5000);
+      } else {
+        throw new Error('Form submission failed');
+      }
 
     } catch (error) {
+      console.error('Form submission error:', error);
       this.showFormError('Failed to send message. Please try again.');
     } finally {
       // Reset button state
@@ -330,15 +341,7 @@ class Portfolio {
     alert(message); // Simple fallback
   }
 
-  async simulateFormSubmission(formData) {
-    // Simulate network delay
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log('Form data:', Object.fromEntries(formData));
-        resolve();
-      }, 1500);
-    });
-  }
+
 
   // Intersection Observer for subtle animations
   setupIntersectionObserver() {
