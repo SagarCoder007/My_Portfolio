@@ -18,9 +18,15 @@ class Portfolio {
 
   // Event Listeners
   setupEventListeners() {
-    document.addEventListener('DOMContentLoaded', () => {
+    // Check if DOM is already loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        this.onDOMContentLoaded();
+      });
+    } else {
+      // DOM is already loaded
       this.onDOMContentLoaded();
-    });
+    }
 
     window.addEventListener('scroll', this.throttle(() => {
       this.handleNavbarScroll();
@@ -32,6 +38,11 @@ class Portfolio {
   }
 
   onDOMContentLoaded() {
+    // Initialize typing effect with delay to ensure DOM is ready
+    setTimeout(() => {
+      this.initTypingEffect();
+    }, 500);
+
     // Add fade-in class to sections for subtle entrance
     const sections = document.querySelectorAll('section');
     sections.forEach((section, index) => {
@@ -114,6 +125,73 @@ class Portfolio {
     });
 
     sections.forEach(section => observer.observe(section));
+  }
+
+  // Typing Effect
+  initTypingEffect() {
+    const typingText = document.querySelector('.typing-text');
+    
+    if (!typingText) {
+      console.log('Typing text element not found!');
+      return;
+    }
+
+    console.log('Initializing typing effect...');
+
+    const roles = [
+      'Full-Stack Developer',
+      'Tech Enthusiast', 
+      'Problem Solver',
+      'Code Craftsman'
+    ];
+    
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 150;
+    
+    const typeRole = () => {
+      const currentRole = roles[roleIndex];
+      let displayText = '';
+      
+      if (isDeleting) {
+        displayText = currentRole.substring(0, charIndex - 1);
+        charIndex--;
+        typeSpeed = 75; // Faster deletion
+      } else {
+        displayText = currentRole.substring(0, charIndex + 1);
+        charIndex++;
+        typeSpeed = 100; // Typing speed
+      }
+      
+      // Always show cursor after the current text
+      if (isDeleting || (!isDeleting && charIndex < currentRole.length)) {
+        // Normal blinking cursor during typing/deleting
+        typingText.innerHTML = displayText + '<span class="cursor-inline blink">|</span>';
+      } else if (!isDeleting && charIndex === currentRole.length) {
+        // Pulse cursor during pause
+        typingText.innerHTML = displayText + '<span class="cursor-inline pulse">|</span>';
+      }
+      
+      // When finished typing current role
+      if (!isDeleting && charIndex === currentRole.length) {
+        typeSpeed = 2000; // Pause at end to read
+        isDeleting = true;
+      } 
+      // When finished deleting current role
+      else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length; // Loop back to start
+        typeSpeed = 300; // Brief pause before next role
+      }
+      
+      // Continue the loop
+      setTimeout(typeRole, typeSpeed);
+    };
+    
+    // Clear any existing text and start typing
+    typingText.innerHTML = '<span class="cursor-inline blink">|</span>';
+    typeRole();
   }
 
   // Smooth Scrolling
@@ -361,32 +439,33 @@ class Portfolio {
 
 // Initialize Portfolio when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  new Portfolio();
-});
+  console.log('DOM Content Loaded - Initializing Portfolio...');
+  const portfolio = new Portfolio();
+  
+  // Add some professional interactive touches
+  setTimeout(() => {
+    // Add hover effects to social links
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+      link.classList.add('icon-bounce');
+    });
 
-// Add some professional interactive touches
-document.addEventListener('DOMContentLoaded', () => {
-  // Add hover effects to social links
-  const socialLinks = document.querySelectorAll('.social-link');
-  socialLinks.forEach(link => {
-    link.classList.add('icon-bounce');
-  });
+    // Add hover effects to buttons
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(btn => {
+      btn.classList.add('btn-hover-effect');
+    });
 
-  // Add hover effects to buttons
-  const buttons = document.querySelectorAll('.btn');
-  buttons.forEach(btn => {
-    btn.classList.add('btn-hover-effect');
-  });
+    // Add hover effects to cards
+    const cards = document.querySelectorAll('.skill-category, .project-card');
+    cards.forEach(card => {
+      card.classList.add('card-hover');
+    });
 
-  // Add hover effects to cards
-  const cards = document.querySelectorAll('.skill-category, .project-card');
-  cards.forEach(card => {
-    card.classList.add('card-hover');
-  });
-
-  // Add underline effect to nav links
-  const navLinks = document.querySelectorAll('.nav-link');
-  navLinks.forEach(link => {
-    link.classList.add('underline-effect');
-  });
+    // Add underline effect to nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.classList.add('underline-effect');
+    });
+  }, 100);
 }); 
