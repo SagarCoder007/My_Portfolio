@@ -290,6 +290,8 @@ class Portfolio {
     elementsToAnimate.forEach(el => observer.observe(el));
   }
 
+
+
   // Handle resize events
   handleResize() {
     // Close mobile menu on resize to desktop
